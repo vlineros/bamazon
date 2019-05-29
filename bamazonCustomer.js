@@ -1,6 +1,8 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 
+// *** if want to modularize can get rid of connection info and export customer object to another main file that has connection ***
+
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -21,7 +23,7 @@ function afterConnection() {
 }
 
 function BamazonCustomer() {
-  thisCustomer = this;
+  var thisCustomer = this;
   thisCustomer.buyItem = function() {
     inquirer
       .prompt([
@@ -65,6 +67,7 @@ function BamazonCustomer() {
                   console.log(
                     "Your order was completed \n your total is: $" + orderTotal
                   );
+                  connection.end();
                 }
               );
             } else {
@@ -94,6 +97,7 @@ function BamazonCustomer() {
               itemPrice
           );
         }
+        console.log("");
         thisCustomer.buyItem();
       }
     );
