@@ -149,6 +149,7 @@ function BamazonManager() {
               ],
               function(err, res) {
                 console.log("items have been added.");
+                console.log("");
                 userManager.showMenu();
               }
             );
@@ -192,11 +193,11 @@ function BamazonManager() {
           "," +
           response.quantity +
           ")";
-        console.log(query);
         connection.query(query, function(err, res) {
           if (err) throw err;
           else {
             console.log("item successfully added to store.");
+            console.log("");
             userManager.showMenu();
           }
         });
